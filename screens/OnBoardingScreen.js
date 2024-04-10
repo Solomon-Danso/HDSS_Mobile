@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import Onboarding from 'react-native-onboarding-swiper'
 import LottieView from 'lottie-react-native';
 import {useNavigation} from "@react-navigation/native"
- 
+import {setItem} from "../utils/asyncStorage"
 const {width,height} = Dimensions.get('window')
 
 
@@ -13,6 +13,7 @@ const OnBoardingScreen = () => {
 
 const handleDone = () =>{
   navigation.navigate("Home")
+  setItem("onboarded",'1')
 }
 
 const doneButton = ({...props}) =>{
@@ -124,9 +125,8 @@ const styles= StyleSheet.create({
   doneButton:{
     padding:20,
     backgroundColor:"white",
-    borderTopLeftRadius:"100%",
-    borderBottomLeftRadius:"100%",
-
+    borderTopLeftRadius: 100,
+    borderBottomLeftRadius: 100
   }
 
 
