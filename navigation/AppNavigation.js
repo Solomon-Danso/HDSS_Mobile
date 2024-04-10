@@ -38,13 +38,12 @@ const AppNavigation = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={showOnBoarding ? 'OnBoarding' : 'Home'}>
+      <Stack.Navigator screenOptions={{headerShown:false}} initialRouteName={showOnBoarding ? 'OnBoarding' : 'Home'}>
         <Stack.Screen name="OnBoarding" options={{ headerShown: false }} component={OnBoardingScreen} />
         
         <Stack.Screen
           name="Home"
-          options={{ headerShown: false }}
-          component={isSetUp ? LoginScreen : SetUpScreen} // Use LoginScreen if isSetUp is true, otherwise use SetUpScreen
+          component={!isSetUp ? LoginScreen : SetUpScreen} // Use LoginScreen if isSetUp is true, otherwise use SetUpScreen
         />
       </Stack.Navigator>
     </NavigationContainer>
