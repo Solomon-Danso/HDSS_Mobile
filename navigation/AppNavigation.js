@@ -43,7 +43,7 @@ const AppNavigation = () => {
         
         <Stack.Screen
           name="Home"
-          component={!isSetUp ? LoginScreen : SetUpScreen} // Use LoginScreen if isSetUp is true, otherwise use SetUpScreen
+          component={isSetUp ? LoginScreen : SetUpScreen} // Use LoginScreen if isSetUp is true, otherwise use SetUpScreen
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -3,6 +3,10 @@ import React from 'react'
 import {StatusBar} from "expo-status-bar"
 import LottieView from 'lottie-react-native';
 import Animated,{FadeIn, FadeInDown, FadeInUp, FadeOut} from 'react-native-reanimated'
+import ETO from 'react-native-vector-icons/Entypo';
+import { Icon } from './SetUpScreen';
+
+
 
 const {width,height} = Dimensions.get('window')
 
@@ -26,19 +30,23 @@ const LoginScreen = () => {
 
 
 <View className="flex items-center">
-<Text className="text-white font-bold tracking-wider text-5xl ">
-Login
+<Text style={{color:"#fff", fontSize:30, textAlign:'center', fontWeight:"bold",fontFamily:"open sans, san-serif, helvetica"}} classNam="mb-5">
+Sacred Heart International School
 </Text>
+
+
 </View>
 
 <View className="flex items-center mx-4 space-y-4">
 
-<View className="bg-black/5 p-5 rounded-2xl w-full">
-<TextInput placeholder="UserId" placeholderTextColor={'gray'}/>
+<View className=" p-5 d-flex flex-row gap-2 rounded-2xl w-full" style={{backgroundColor:"#fef3c7"}}>
+<Icon Iconsrc={ETO} name="user"/>
+<TextInput placeholder="Enter UserId" placeholderTextColor={'#264C62'}/>
 </View>
 
-<View className="mb-3 bg-black/5 p-5 rounded-2xl w-full">
-<TextInput secureTextEntry placeholder="Password" placeholderTextColor={'gray'}/>
+<View className="mb-3 d-flex flex-row gap-2 p-5 rounded-2xl w-full" style={{backgroundColor:"#E7F0FE"}}>
+<Icon Iconsrc={ETO} name="lock"/>
+<TextInput secureTextEntry placeholder="Enter Password" placeholderTextColor={'#264C62'}/>
 </View>
 
 <View className="w-full">
