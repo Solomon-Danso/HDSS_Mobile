@@ -4,7 +4,8 @@ import {StatusBar} from "expo-status-bar"
 import LottieView from 'lottie-react-native';
 import Animated,{FadeIn, FadeInDown, FadeInUp, FadeOut} from 'react-native-reanimated'
 import ETO from 'react-native-vector-icons/Entypo';
-import { Icon } from './SetUpScreen';
+import { OneButton, TwoButton,Icon } from '../utils/Alerts.';
+
 
 
 
@@ -16,6 +17,7 @@ const LoginScreen = () => {
     <View className="bg-white h-full w-full ">
 
     <StatusBar style="light"/>
+    
 
         <Image className="h-full w-full absolute " source={require("../assets/images/background.png")}/>
      
@@ -39,7 +41,7 @@ Sacred Heart International School
 
 <View className="flex items-center mx-4 space-y-4">
 
-<View className=" p-5 d-flex flex-row gap-2 rounded-2xl w-full" style={{backgroundColor:"#fef3c7"}}>
+<View className="p-5 d-flex flex-row gap-2 rounded-2xl w-full" style={{backgroundColor:"#fef3c7"}}>
 <Icon Iconsrc={ETO} name="user"/>
 <TextInput placeholder="Enter UserId" placeholderTextColor={'#264C62'}/>
 </View>

@@ -10,41 +10,26 @@ const Stack = createNativeStackNavigator();
 
 const AppNavigation = () => {
   const [showOnBoarding, setShowOnboarding] = useState(null);
-  const [isSetUp, setIsSetUp] = useState(false);
+  const [mySetup, setMySetup] = useState(false);
 
-  useEffect(() => {
-    checkIfAlreadyOnboarded();
-    checkIfSetUp();
-  }, []);
-
-  const checkIfAlreadyOnboarded = async () => {
-    let onboarded = await getItem('onboarded');
-    if (onboarded === '1') {
-      setShowOnboarding(false);
-    } else {
-      setShowOnboarding(true);
-    }
-  };
-
-  const checkIfSetUp = async () => {
-    let setUp = await getItem('isSetUp');
-    setIsSetUp(setUp === 'true'); // Assuming 'isSetUp' is stored as a string
-   
-  };
-
-  if (showOnBoarding === null) {
-    return null;
-  }
-
+  
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerShown:false}} initialRouteName={showOnBoarding ? 'OnBoarding' : 'Home'}>
-        <Stack.Screen name="OnBoarding" options={{ headerShown: false }} component={OnBoardingScreen} />
-        
-        <Stack.Screen
-          name="Home"
-          component={isSetUp ? LoginScreen : SetUpScreen} // Use LoginScreen if isSetUp is true, otherwise use SetUpScreen
-        />
+      <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={'Home'}>
+        <Stack.Screen name="OnBoarding" component={OnBoardingScreen} />
+     
+
+
+     <Stack.Screen
+      name="Home1"
+      component={LoginScreen}
+    />
+    <Stack.Screen
+    name="Home"
+    component={SetUpScreen}
+  />
+    
+
       </Stack.Navigator>
     </NavigationContainer>
   );
