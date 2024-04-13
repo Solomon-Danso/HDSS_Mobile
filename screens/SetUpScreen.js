@@ -49,7 +49,7 @@ const SetUpScreen = () => {
           setItem("apiServer",data.ApiServerURL)
           setItem("apiMedia",data.ApiMediaURL)
           setItem('isSetUp',"1")
-          navigation.navigate("Home")
+          navigation.navigate("Login")
 
           OneButton("Operation is successful")
           
@@ -64,14 +64,7 @@ const SetUpScreen = () => {
   
   }
 
-  useEffect(()=>{
-console.log("apiServer",getItem("apiServer"))
-console.log("apiMedia",getItem("apiMedia"))
-console.log("setUp",getItem('isSetUp'))
-
-
-
-  },[])
+ 
 
 
 

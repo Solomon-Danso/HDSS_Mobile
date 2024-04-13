@@ -1,10 +1,11 @@
 import { View, Text,Dimensions,Image,TextInput,TouchableOpacity  } from 'react-native'
-import React from 'react'
+import Reac,{useEffect} from 'react'
 import {StatusBar} from "expo-status-bar"
 import LottieView from 'lottie-react-native';
 import Animated,{FadeIn, FadeInDown, FadeInUp, FadeOut} from 'react-native-reanimated'
 import ETO from 'react-native-vector-icons/Entypo';
 import { OneButton, TwoButton,Icon } from '../utils/Alerts.';
+import { getItem, removeItem, setItem } from '../utils/asyncStorage';
 
 
 
@@ -13,6 +14,11 @@ const {width,height} = Dimensions.get('window')
 
 
 const LoginScreen = () => {
+ 
+
+
+      
+ 
   return (
     <View className="bg-white h-full w-full ">
 

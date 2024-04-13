@@ -16,10 +16,28 @@ const AppNavigation = () => {
 
     TheOnboard()
     TheSetUp()
-
+    StorageViewer()
+    //StorageDestroyer()
 
   },[])
 
+
+
+  const StorageDestroyer = async ()=>{
+    await removeItem("apiServer")
+   await removeItem("apiMedia")
+  await removeItem('isSetUp')
+  await removeItem('onboarded')
+    
+      }
+
+  const StorageViewer = async () =>{
+    console.log("apiServer",await getItem("apiServer"))
+    console.log("apiMedia",await getItem("apiMedia"))
+    console.log("setUp",await getItem('isSetUp'))
+    console.log("Onboard",await getItem('onboarded'))
+   
+  }
 
   const TheOnboard =async () =>{
     let onboard = await getItem("onboarded");
@@ -30,7 +48,8 @@ const AppNavigation = () => {
     else{
       setOnboarded(false)
     }
-
+   
+    console.log(onboard)
    
 
   }
@@ -55,6 +74,7 @@ const AppNavigation = () => {
     return null;
   }
 
+ 
 
   return (
     <NavigationContainer>
@@ -67,6 +87,7 @@ const AppNavigation = () => {
     />
       }
 
+<Stack.Screen name="Login" component={LoginScreen}/>
      
    
     
