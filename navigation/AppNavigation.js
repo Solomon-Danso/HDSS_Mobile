@@ -5,18 +5,20 @@ import LoginScreen from '../screens/LoginScreen';
 import OnBoardingScreen from '../screens/OnBoardingScreen';
 import { getItem, removeItem } from '../utils/asyncStorage';
 import SetUpScreen from '../screens/SetUpScreen';
+import Dashboard from "../Pages/Dashboard"
+
 
 const Stack = createNativeStackNavigator();
 
 const AppNavigation = () => {
   const [Onboarded, setOnboarded] = useState(null);
   const [mySetup, setMySetup] = useState(null);
-
+ 
   useEffect(()=>{
 
     TheOnboard()
     TheSetUp()
-    StorageViewer()
+    //StorageViewer()
     //StorageDestroyer()
 
   },[])
@@ -36,6 +38,8 @@ const AppNavigation = () => {
     console.log("apiMedia",await getItem("apiMedia"))
     console.log("setUp",await getItem('isSetUp'))
     console.log("Onboard",await getItem('onboarded'))
+    console.log("userInfo",await getItem('userInfo'))
+    console.log("isLogin",await getItem('isLogin'))
    
   }
 
@@ -49,12 +53,14 @@ const AppNavigation = () => {
       setOnboarded(false)
     }
    
-    console.log(onboard)
+   
    
 
   }
 
   
+  
+
   const TheSetUp =async () =>{
     let setup =await getItem("isSetUp");
    
@@ -76,6 +82,9 @@ const AppNavigation = () => {
 
  
 
+
+ 
+
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={Onboarded?'Home':"OnBoarding"}>
@@ -88,7 +97,7 @@ const AppNavigation = () => {
       }
 
 <Stack.Screen name="Login" component={LoginScreen}/>
-     
+<Stack.Screen name="Dashboard" component={Dashboard}/>   
    
     
 
