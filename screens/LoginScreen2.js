@@ -13,10 +13,8 @@ import * as LocalAuthentication from "expo-local-authentication"
 
 const LoginScreen2 = () => {
   const [SchoolData, SetSchoolData] = useState({});
-  const [userInfo, setuserInfo] = useState({});
   const [apiServer, SetApiServer] = useState('');
   const [apiMedia, SetApiMedia] = useState('');
-  const [isInitialLogin, setIsInitialLogin] = useState(false)
   const [userId, setuserId] = useState('');
   const [userPassword, setuserPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -41,9 +39,8 @@ const LoginScreen2 = () => {
       if (response.ok) {
         setLoading(false);
 
-        setItem('userInfo', JSON.stringify(data.message) );
+        setItem('userInfo', data.message);
         setItem('isLogin', '1');
-        setItem('isInitialLogin', '1');
         navigation.navigate('Dashboard');
 
         OneButton('Operation is successful');
@@ -82,12 +79,6 @@ const LoginScreen2 = () => {
 
     let apiMed = await getItem('apiMedia');
     SetApiMedia(apiMed);
-
-    let initialLogin = await getItem('isInitialLogin');
-    setIsInitialLogin(initialLogin==="1")
-
-    
-
   }, []);
 
   useEffect(() => {
@@ -99,28 +90,6 @@ const LoginScreen2 = () => {
 
   const imageUrl = apiMedia + SchoolData.CompanyLogo;
 
-
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const user = await getItem('userInfo');
-        if (user !== null) {
-          setuserInfo(JSON.parse(user));
-        }
-      } catch (error) {
-        console.error('Error fetching user info: ', error);
-      }
-    };
-
-    fetchData();
-  }, []); // Empty dependency array ensures this effect runs only once after initial render
-
-
-
-
-
-
   return (
     <SafeAreaView style={styles.container}>
        <StatusBar style="light"/>
@@ -131,32 +100,11 @@ const LoginScreen2 = () => {
 
       <View style={styles.card}>
 
-      {
-  isInitialLogin ?
-  (<>
-    <View style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
-      <Animated.Image entering={FadeInDown.delay(200).duration(3000).springify().damping(4)} style={{width:100, height:100, borderRadius:20, marginTop:10}}  source={{ uri:imageUrl }}/>
-      </View>
-
-      <View style={{ display: "flex", flexDirection: "row", alignItems: "center", marginBottom: 25, marginTop: 10,gap:5 }}>
-  <Animated.Image entering={FadeInDown.delay(200).duration(3000).springify().damping(4)} style={{ width: 50, height: 50, borderRadius: 100, marginTop: 10 }} source={{ uri: apiMedia + userInfo?.ProfilePic }} />
-  <Text style={styles.headerTextSmall}>
-    Welcome Back,{"\n"}<Text style={styles.headerText}>{userInfo?.FullName}</Text> 
-  </Text>
+<View style={{display:"flex", alignItems:"center", justifyContent:"center",marginBottom:25}}>
+<Animated.Image entering={FadeInDown.delay(200).duration(3000).springify().damping(4)} style={{width:100, height:100, borderRadius:20,marginTop:10}}  source={{ uri:imageUrl }}/>
+<Text style={styles.headerText}>{SchoolData.CompanyName}</Text>
+         
 </View>
-
-
-   </>
-  ) :
-  (
-    <View style={{display:"flex", alignItems:"center", justifyContent:"center", marginBottom:25}}>
-      <Animated.Image entering={FadeInDown.delay(200).duration(3000).springify().damping(4)} style={{width:100, height:100, borderRadius:20, marginTop:10}}  source={{ uri:imageUrl }}/>
-      <Text style={styles.headerText}>{SchoolData.CompanyName}</Text>        
-    </View>
-  )
-}
-
-
 
 <View style={styles.theInput}>
 
@@ -187,28 +135,21 @@ const LoginScreen2 = () => {
 <Text >Login </Text>
 </TouchableOpacity>
 
-
-{
-  isInitialLogin?
-  <>
-  <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center',marginTop:40 }} >
+<View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center',marginTop:40 }} >
             <View style={{ borderBottomColor: 'white', borderBottomWidth: 1, width: '40%', marginRight: 10 }} />
             <Text style={styles.headerTextSmall}>OR</Text>
             <View style={{ borderBottomColor: 'white', borderBottomWidth: 1, width: '40%', marginLeft: 10 }} />
 </View>
-  <View className="w-full" style={{display:"flex", flexDirection:"row", justifyContent:"center", alignItems:'center',marginTop:20}}>  
-  <LottieView style={{width:50, height:50}} source={require("../assets/animations/biometric.json")} autoPlay loop/> 
-  
-  <TouchableOpacity onPress={DeviceAuth}>
-  <Text style={{color:"aqua", fontSize:20, fontWeight:'bold'}}>Use Biometric Instead?</Text>
-  </TouchableOpacity>
-  
-  </View>
-  </>
-  :<></>
-}
 
 
+<View className="w-full" style={{display:"flex", flexDirection:"row", justifyContent:"center", alignItems:'center',marginTop:20}}>  
+<LottieView style={{width:50, height:50}} source={require("../assets/animations/biometric.json")} autoPlay loop/> 
+
+<TouchableOpacity onPress={DeviceAuth}>
+<Text style={{color:"aqua", fontSize:20, fontWeight:'bold'}}>Use Biometric Instead?</Text>
+</TouchableOpacity>
+
+</View>
 
 
      

@@ -6,6 +6,8 @@ import OnBoardingScreen from '../screens/OnBoardingScreen';
 import { getItem, removeItem } from '../utils/asyncStorage';
 import SetUpScreen from '../screens/SetUpScreen';
 import Dashboard from "../Pages/Dashboard"
+import InitialLoad from '../screens/InitialLoad';
+
 
 
 const Stack = createNativeStackNavigator();
@@ -92,10 +94,12 @@ const AppNavigation = () => {
      
 
       {
-        mySetup?<Stack.Screen name="Home" component={LoginScreen}/>: <Stack.Screen name="Home" component={SetUpScreen}
+        mySetup?<Stack.Screen name="Main" component={LoginScreen}/>: <Stack.Screen name="Main" component={SetUpScreen}
     />
       }
 
+
+<Stack.Screen name="Home" component={InitialLoad}/>
 <Stack.Screen name="Login" component={LoginScreen}/>
 <Stack.Screen name="Dashboard" component={Dashboard}/>   
    
