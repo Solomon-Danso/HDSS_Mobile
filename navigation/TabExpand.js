@@ -80,7 +80,7 @@ const TabButton = (props) => {
 
 export default function AnimTab3() {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor:`${colors.card}` }}>
       <Tab.Navigator
         screenOptions={{
           headerShown: false,

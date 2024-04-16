@@ -5,7 +5,7 @@ import LoginScreen from '../screens/LoginScreen';
 import OnBoardingScreen from '../screens/OnBoardingScreen';
 import { getItem, removeItem } from '../utils/asyncStorage';
 import SetUpScreen from '../screens/SetUpScreen';
-import TabDashboard from "./TabDashboard"
+import TabPopup from "./TabPopup"
 import InitialLoad from '../screens/InitialLoad';
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs"
 
@@ -102,7 +102,7 @@ const AppNavigation = () => {
 
 <Stack.Screen name="Home" component={InitialLoad}/>
 <Stack.Screen name="Login" component={LoginScreen}/>
-<Stack.Screen name="Dashboard" component={TabDashboard}/>   
+<Stack.Screen name="Dashboard" component={TabPopup}/>   
    
     
 
