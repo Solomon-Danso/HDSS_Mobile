@@ -83,7 +83,7 @@ const TabButton = (props) => {
           <Animatable.View
             ref={circleRef}
             style={styles.circle} />
-          <Icon type={item.type} name={item.icon} color={focused ? colors.white : colors.primary} />
+          <Icon type={item.type} name={item.icon} color={focused ? "#00CFE7" : "#26293C"} />
         </View>
         <Animatable.Text
           ref={textRef}
