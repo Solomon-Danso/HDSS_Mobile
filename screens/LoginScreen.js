@@ -128,6 +128,12 @@ const LoginScreen2 = () => {
        
       </View>
 
+      { loading && <Spinner
+        visible={true}
+        textContent="Processing Data..."
+        /> 
+  }
+
       <View style={styles.card}>
 
       {
