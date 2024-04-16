@@ -114,8 +114,7 @@ const LoginScreen2 = () => {
     };
 
     fetchData();
-  }, []); // Empty dependency array ensures this effect runs only once after initial render
-
+  }, []); 
 
 
 
