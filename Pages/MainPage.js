@@ -3,7 +3,7 @@ import React from 'react'
 
 const MainPage = ({navigation}) => {
   return (
-    <View>
+    <View style={{flex:1, backgroundColor:"#26293C"}}>
       <Text>MainPage</Text>
     </View>
   )
