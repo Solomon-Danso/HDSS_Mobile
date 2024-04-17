@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from 'react';
-import { Button, View, Text, Image } from 'react-native';
+import { ScrollView, View, Text, Image } from 'react-native';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
 import HomeScreen from "../Pages/HomeScreen"
 import NotificationScreen from "../Pages/NotificationScreen"
@@ -42,6 +42,58 @@ function CustomDrawerContent(props) {
   }, []); 
 
 
+  const [RoleList, setRoleList] = useState([])
+ 
+  useEffect(()=>{
+    handleRoles()
+  
+  },[userInfo])
+
+  
+  const handleRoles = async () => {
+   
+   
+    try {
+      const formData = new FormData();
+
+      const CompanyId = userInfo.CompanyId;
+      const UserId = userInfo.UserId;
+    
+      formData.append("CompanyId",CompanyId)
+      formData.append("UserId",UserId)
+
+  
+      const response = await fetch(apiServer+"ViewUserDetailedRole", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await response.json();
+  
+      if (response.ok) {
+        
+       
+        setRoleList(data)
+        
+      } else {
+      
+      }
+    } catch (error) {
+
+      Show.Attention("An error has occurred");
+      
+      window.location.reload()
+    }
+
+}
+
+const checkRole = (role) => {
+  return RoleList.includes(role);
+};
+
+  console.log(RoleList)
+
+
 
 
   return (
@@ -53,17 +105,26 @@ function CustomDrawerContent(props) {
         />
         <Text style={{ color: 'white', marginTop: 10 }}>{userInfo?.FullName}</Text>
       </View>
-     
-     <DrawerItem
-        label="Home"
-        onPress={() => props.navigation.navigate('Home')}
+
+
+{checkRole("SuperAdmin")|| checkRole('ForStudent') || checkRole('AddStudent') ? (   
+  <>
+       <DrawerItem
+        label="Dashboard"
+        onPress={() => props.navigation.navigate('Dashboard')}
         icon={({ color, size }) => <Feather name="home" size={size} color="white" />}
         style={{ color: 'gray', fontWeight: 'bold', fontSize: 16 }} // Set the style for Home drawer item
         labelStyle={{ color: 'white', fontWeight: 'bold', fontSize: 16 }} // Set the label style for Home drawer item
         activeLabelStyle={{ color: 'green', fontWeight: 'bold', fontSize: 18 }} // Set the active label style for Home drawer item
       
       />
-      <DrawerItem
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin")|| checkRole('ForStudent') || checkRole('AddStudent') ? (   
+  <>
+        <DrawerItem
         label="Notifications"
         onPress={() => props.navigation.navigate('Notifications')}
         icon={({ color, size }) => <Feather name="bell" size={size} color="white" />}
@@ -71,15 +132,32 @@ function CustomDrawerContent(props) {
         labelStyle={{ color: 'white', fontWeight: 'bold', fontSize: 16 }} // Set the label style for Notifications drawer item
         activeLabelStyle={{ color: 'white', fontWeight: 'bold', fontSize: 18 }} // Set the active label style for Notifications drawer item
       />
+  </>
+) : (<></>)
+}
+
+
+
+
+
+
+     
+
+
+
 
     </DrawerContentScrollView>
   );
 }
 
 export default function App() {
+  
+
+  
+  
   return (
     <Drawer.Navigator
-      initialRouteName="Home"
+
       drawerContent={props => <CustomDrawerContent {...props} />}
       screenOptions={({ route }) => ({
         headerStyle: {
@@ -87,7 +165,9 @@ export default function App() {
         },
         headerTintColor: 'white', // Set the text color of header titles to white
         drawerStyle: {
-          backgroundColor: "#2D334A", // Set the background color of the drawer container to red
+          backgroundColor: "#26293C",
+          height:"90%",
+  
         },
         drawerIcon: ({ focused, color, size }) => {
           let iconName;
@@ -123,7 +203,7 @@ export default function App() {
           fontSize: 18, // Set the font size of drawer labels when focused to 18
         },
       }}>
-      <Drawer.Screen name="Home" component={HomeScreen} />
+      <Drawer.Screen name="Dashboard" component={HomeScreen} />
       <Drawer.Screen name="Notifications" component={NotificationScreen} />
     </Drawer.Navigator>
   );
