@@ -1,4 +1,4 @@
-import { View, Text,Dimensions,StyleSheet,Image,TextInput,TouchableOpacity, SafeAreaView,Button, Alert, TouchableHighlight  } from 'react-native'
+import { View,BackHandler, Text,Dimensions,StyleSheet,Image,TextInput,TouchableOpacity, SafeAreaView,Button, Alert, TouchableHighlight  } from 'react-native'
 import Reac,{useEffect,useState} from 'react'
 import {StatusBar} from "expo-status-bar"
 import LottieView from 'lottie-react-native';
@@ -9,6 +9,7 @@ import { getItem, removeItem, setItem } from '../utils/asyncStorage';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { useNavigation } from '@react-navigation/native';
 import * as LocalAuthentication from "expo-local-authentication"
+import NetInfo from '@react-native-community/netinfo';
 
 
 const LoginScreen2 = () => {
@@ -21,6 +22,10 @@ const LoginScreen2 = () => {
   const [userPassword, setuserPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
+  const [isConnected, setIsConnected] = useState(true);
+  const [attemptCount, setAttemptCount] = useState(0);
+
+
 
   const Login = async () => {
     setLoading(true);
@@ -58,14 +63,17 @@ const LoginScreen2 = () => {
   };
 
   const DeviceAuth = async () => {
-    try {
+
+
+  try {
       const result = await LocalAuthentication.authenticateAsync({
         promptMessage: 'Authenticate to access the dashboard',
       });
 
       if (result.success) {
-        // Authentication successful, navigate to the dashboard
-        navigation.navigate('Dashboard');
+       
+       navigation.navigate('Dashboard');
+        
       } else {
         // Authentication failed or canceled
         console.log('Authentication failed or canceled');
@@ -74,6 +82,8 @@ const LoginScreen2 = () => {
       // An error occurred during authentication
       console.error('Authentication error:', error);
     }
+
+
   };
 
   useEffect(async () => {
@@ -86,7 +96,17 @@ const LoginScreen2 = () => {
     let initialLogin = await getItem('isInitialLogin');
     setIsInitialLogin(initialLogin==="1")
 
+    const state = await NetInfo.fetch();
     
+    if (!state.isConnected) {
+      Alert.alert(
+        "No Internet Connection",
+        "Please check your internet connection and try again. ",
+        [{ text: "OK",onPress: () => BackHandler.exitApp() }]
+      );
+    }
+
+
 
   }, []);
 
