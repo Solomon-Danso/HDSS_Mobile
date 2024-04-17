@@ -20,8 +20,8 @@ import MenuButton from "../Pages/MenuButton"
 import { useTheme } from '@react-navigation/native';
 
 const TabArr = [
-  { route: 'Home', label: 'Home', type: Feather, icon: 'home', component: MainPage, color: colors.primary, alphaClr: colors.primaryAlpha },
-  { route: 'Search', label: 'Search', type: Feather, icon: 'search', component: MenuButton, color: colors.green, alphaClr: colors.greenAlpha },
+  { route: 'Home', label: 'Home', type: Feather, icon: 'home', component: MenuButton, color: colors.primary, alphaClr: colors.primaryAlpha },
+  { route: 'Search', label: 'Search', type: Feather, icon: 'search', component: MainPage, color: colors.green, alphaClr: colors.greenAlpha },
   { route: 'Add', label: 'Add New', type: Feather, icon: 'plus-square', component: MainPage, color: colors.red, alphaClr: colors.redAlpha },
   { route: 'Account', label: 'Account', type: FontAwesome, icon: 'user-circle-o', component: MenuButton, color: colors.purple, alphaClr: colors.purpleAlpha },
 ];
@@ -103,6 +103,7 @@ export default function AnimTab1() {
           headerShown: false,
           tabBarStyle: styles.tabBar,
         }}
+        initialRouteName="Home"
       >
         {TabArr.map((item, index) => {
           return (
@@ -148,7 +149,7 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.primary,
+    backgroundColor: "#26293C",
     borderRadius: 25,
   },
   text: {

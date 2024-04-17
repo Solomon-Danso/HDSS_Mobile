@@ -7,11 +7,9 @@ import { getItem, removeItem } from '../utils/asyncStorage';
 import SetUpScreen from '../screens/SetUpScreen';
 import TabPopup from "./TabPopup"
 import InitialLoad from '../screens/InitialLoad';
-import {createBottomTabNavigator} from "@react-navigation/bottom-tabs"
 
 
 const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
 
 const AppNavigation = () => {
   const [Onboarded, setOnboarded] = useState(null);
