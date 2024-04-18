@@ -1,11 +1,13 @@
 import React,{useState, useEffect} from 'react';
-import { ScrollView, View, Text, Image } from 'react-native';
+import { ScrollView, View, Text, Image,TouchableOpacity} from 'react-native';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
 import HomeScreen from "../Pages/HomeScreen"
 import NotificationScreen from "../Pages/NotificationScreen"
 import Octicons from 'react-native-vector-icons/Octicons';
 import Feather from 'react-native-vector-icons/Feather';
 import { getItem, removeItem, setItem } from '../utils/asyncStorage';
+import DropList from './DropList'; // Importing your DropList component
+import InnerDItem from './InnerDItem';
 
 
 const Drawer = createDrawerNavigator();
@@ -88,10 +90,11 @@ function CustomDrawerContent(props) {
 }
 
 const checkRole = (role) => {
+ 
   return RoleList.includes(role);
 };
 
-  console.log(RoleList)
+ 
 
 
 
@@ -107,30 +110,15 @@ const checkRole = (role) => {
       </View>
 
 
-{checkRole("SuperAdmin")|| checkRole('ForStudent') || checkRole('AddStudent') ? (   
-  <>
-       <DrawerItem
-        label="Dashboard"
-        onPress={() => props.navigation.navigate('Dashboard')}
-        icon={({ color, size }) => <Feather name="home" size={size} color="white" />}
-        style={{ color: 'gray', fontWeight: 'bold', fontSize: 16 }} // Set the style for Home drawer item
-        labelStyle={{ color: 'white', fontWeight: 'bold', fontSize: 16 }} // Set the label style for Home drawer item
-        activeLabelStyle={{ color: 'green', fontWeight: 'bold', fontSize: 18 }} // Set the active label style for Home drawer item
-      
-      />
-  </>
-) : (<></>)
-}
 
+
+<DropList icon="users" iconsrc={Feather} title="Student">
+       
 {checkRole("SuperAdmin")|| checkRole('ForStudent') || checkRole('AddStudent') ? (   
   <>
-        <DrawerItem
-        label="Notifications"
-        onPress={() => props.navigation.navigate('Notifications')}
-        icon={({ color, size }) => <Feather name="bell" size={size} color="white" />}
-        style={{ color: 'gray', fontWeight: 'bold', fontSize: 16 }} // Set the style for Notifications drawer item
-        labelStyle={{ color: 'white', fontWeight: 'bold', fontSize: 16 }} // Set the label style for Notifications drawer item
-        activeLabelStyle={{ color: 'white', fontWeight: 'bold', fontSize: 18 }} // Set the active label style for Notifications drawer item
+      <InnerDItem 
+      label="Dashboard"
+      handlePress={() => props.navigation.navigate('Dashboard')}
       />
   </>
 ) : (<></>)
@@ -138,10 +126,102 @@ const checkRole = (role) => {
 
 
 
+{checkRole("SuperAdmin")|| checkRole('ForStudent') || checkRole('AddStudent') ? (   
+  <>
+    <InnerDItem 
+      label="Notifications"
+      handlePress={() => props.navigation.navigate('Notifications')}
+  />
+
+  </>
+) : (<></>)
+}       
+       
+       
+</DropList>
+
+<DropList icon="users" iconsrc={Feather} title="Staff">
+       
+{checkRole("SuperAdmin")|| checkRole('ForStudent') || checkRole('AddStudent') ? (   
+  <>
+      <InnerDItem 
+      label="Dashboard"
+      handlePress={() => props.navigation.navigate('Dashboard')}
+      />
+  </>
+) : (<></>)
+}
 
 
 
-     
+{checkRole("SuperAdmin")|| checkRole('ForStudent') || checkRole('AddStudent') ? (   
+  <>
+    <InnerDItem 
+      label="Notifications"
+      handlePress={() => props.navigation.navigate('Notifications')}
+  />
+  
+  </>
+) : (<></>)
+}       
+       
+       
+</DropList>
+
+<DropList icon="users" iconsrc={Feather} title="LMS">
+       
+{checkRole("SuperAdmin")|| checkRole('ForStudent') || checkRole('AddStudent') ? (   
+  <>
+      <InnerDItem 
+      label="Dashboard"
+      handlePress={() => props.navigation.navigate('Dashboard')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin")|| checkRole('ForStudent') || checkRole('AddStudent') ? (   
+  <>
+    <InnerDItem 
+      label="Notifications"
+      handlePress={() => props.navigation.navigate('Notifications')}
+  />
+  
+  </>
+) : (<></>)
+}       
+       
+       
+</DropList>   
+
+<DropList icon="users" iconsrc={Feather} title="Lesson Notes">
+       
+{checkRole("SuperAdmin")|| checkRole('ForStudent') || checkRole('AddStudent') ? (   
+  <>
+      <InnerDItem 
+      label="Dashboard"
+      handlePress={() => props.navigation.navigate('Dashboard')}
+      />
+  </>
+) : (<></>)
+}
+
+
+{checkRole("SuperAdmin")|| checkRole('ForStudent') || checkRole('AddStudent') ? (   
+  <>
+    <InnerDItem 
+      label="Notifications"
+      handlePress={() => props.navigation.navigate('Notifications')}
+  />
+  
+  </>
+) : (<></>)
+}       
+       
+       
+</DropList> 
 
 
 
