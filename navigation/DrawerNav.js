@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from 'react';
-import { ScrollView, View, Text, Image,TouchableOpacity} from 'react-native';
+import {StyleSheet, ScrollView, View,BackHandler, Text, Image,TouchableOpacity} from 'react-native';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
 import HomeScreen from "../Pages/HomeScreen"
 import NotificationScreen from "../Pages/NotificationScreen"
@@ -8,6 +8,23 @@ import Feather from 'react-native-vector-icons/Feather';
 import { getItem, removeItem, setItem } from '../utils/asyncStorage';
 import DropList from './DropList'; // Importing your DropList component
 import InnerDItem from './InnerDItem';
+import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
+import InnerDropList from './InnerDropList';
+import Entypo from 'react-native-vector-icons/Entypo';
+import { colors } from '../assets/colors/Colors';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { FontAwesome, Fontisto, Ionicons } from '@expo/vector-icons';
+import StraightLink from './StraightLink';
+import MultiDropList from './MultiDropList';
+
+
+
+
+
+
+
 
 
 const Drawer = createDrawerNavigator();
@@ -100,25 +117,45 @@ const checkRole = (role) => {
 
 
   return (
-    <DrawerContentScrollView {...props}>
-      <View style={{ alignItems: 'center', padding: 20 }}>
+    <DrawerContentScrollView {...props} >
+
+
+<View style={{ marginBottom:10,alignItems: 'center',borderRadius:20, padding: 20, backgroundColor:`${colors.card}`,opacity:0.8}}>
         <Image
           source={{ uri: apiMedia + userInfo?.ProfilePic }}
           style={{ width: 100, height: 100, borderRadius:50}}
         />
-        <Text style={{ color: 'white', marginTop: 10 }}>{userInfo?.FullName}</Text>
-      </View>
+        <Text style={{ color: `${colors.maingreen}`, marginTop: 10,fontSize:15 }}>{userInfo?.FullName}</Text>
+</View>
 
 
-
-
-<DropList icon="users" iconsrc={Feather} title="Student">
+<DropList icon="people-group" iconsrc={FontAwesome6} title="Students Mgmt">
        
-{checkRole("SuperAdmin")|| checkRole('ForStudent') || checkRole('AddStudent') ? (   
+{checkRole("SuperAdmin") || checkRole('AddStudent') ? (   
   <>
       <InnerDItem 
-      label="Dashboard"
-      handlePress={() => props.navigation.navigate('Dashboard')}
+      label="Add Student"
+      handlePress={() => props.navigation.navigate('AddStudent')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('BulkRegistration') ? (   
+  <>
+      <InnerDItem 
+      label="Bulk Registration"
+      handlePress={() => props.navigation.navigate('BulkRegistration')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('Generators') ? (   
+  <>
+      <InnerDItem 
+      label="Generators"
+      handlePress={() => props.navigation.navigate('Generators')}
       />
   </>
 ) : (<></>)
@@ -126,27 +163,133 @@ const checkRole = (role) => {
 
 
 
-{checkRole("SuperAdmin")|| checkRole('ForStudent') || checkRole('AddStudent') ? (   
-  <>
-    <InnerDItem 
-      label="Notifications"
-      handlePress={() => props.navigation.navigate('Notifications')}
-  />
 
+
+
+
+{checkRole("SuperAdmin") || checkRole('StudentInfo') ? (   
+  <>
+      <InnerDItem 
+      label="Student Info"
+      handlePress={() => props.navigation.navigate('StudentInfo')}
+      />
   </>
 ) : (<></>)
-}       
+}
+
+
+{checkRole("SuperAdmin") || checkRole('UpdateStudents') ? (   
+  <>
+      <InnerDItem 
+      label="Update Students"
+      handlePress={() => props.navigation.navigate('UpdateStudents')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('DeleteStudents') ? (   
+  <>
+      <InnerDItem 
+      label="Delete Students"
+      handlePress={() => props.navigation.navigate('DeleteStudents')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('Assessments') ? (   
+  <>
+      <InnerDItem 
+      label="Assessments"
+      handlePress={() => props.navigation.navigate('Assessments')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('SchoolFees') ? (   
+  <>
+      <InnerDItem 
+      label="SchoolFees"
+      handlePress={() => props.navigation.navigate('SchoolFees')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('Transport') ? (   
+  <>
+      <InnerDItem 
+      label="Transport"
+      handlePress={() => props.navigation.navigate("Transport")}
+      />
+  </>
+) : (<></>)
+}
+
+
+{checkRole("SuperAdmin") || checkRole('Feeding') ? (   
+  <>
+      <InnerDItem 
+      label="Feeding"
+      handlePress={() => props.navigation.navigate("Feeding")}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('Attendance') ? (   
+  <>
+      <InnerDItem 
+      label="Attendance"
+      handlePress={() => props.navigation.navigate("Attendance")}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('Annoucements') ? (   
+  <>
+      <InnerDItem 
+      label="Annoucements"
+      handlePress={() => props.navigation.navigate("Annoucements")}
+      />
+  </>
+) : (<></>)
+}
        
        
 </DropList>
 
-<DropList icon="users" iconsrc={Feather} title="Staff">
+
+<DropList icon="people-line" iconsrc={FontAwesome6} title="Staff Members Mgmt">
        
-{checkRole("SuperAdmin")|| checkRole('ForStudent') || checkRole('AddStudent') ? (   
+{checkRole("SuperAdmin") || checkRole('Register') ? (   
   <>
       <InnerDItem 
-      label="Dashboard"
-      handlePress={() => props.navigation.navigate('Dashboard')}
+      label="Register"
+      handlePress={() => props.navigation.navigate('Register')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('Update ') ? (   
+  <>
+      <InnerDItem 
+      label="Update"
+      handlePress={() => props.navigation.navigate('Update')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('View Details') ? (   
+  <>
+      <InnerDItem 
+      label="View Details"
+      handlePress={() => props.navigation.navigate('ViewDetails')}
       />
   </>
 ) : (<></>)
@@ -154,27 +297,192 @@ const checkRole = (role) => {
 
 
 
-{checkRole("SuperAdmin")|| checkRole('ForStudent') || checkRole('AddStudent') ? (   
+
+
+
+
+{checkRole("SuperAdmin") || checkRole('Delete') ? (   
   <>
-    <InnerDItem 
-      label="Notifications"
-      handlePress={() => props.navigation.navigate('Notifications')}
-  />
-  
+      <InnerDItem 
+      label="Delete"
+      handlePress={() => props.navigation.navigate('Delete')}
+      />
   </>
 ) : (<></>)
-}       
+}
+
+
+{checkRole("SuperAdmin") || checkRole('MemberList') ? (   
+  <>
+      <InnerDItem 
+      label="Member List"
+      handlePress={() => props.navigation.navigate('MemberList')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('BulkRegistration') ? (   
+  <>
+      <InnerDItem 
+      label="Bulk Registration"
+      handlePress={() => props.navigation.navigate('Bulk Registration')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('BulkStaffUpload') ? (   
+  <>
+      <InnerDItem 
+      label="Bulk Staff Upload"
+      handlePress={() => props.navigation.navigate('BulkStaffUpload')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('GenerateStaffList') ? (   
+  <>
+      <InnerDItem 
+      label="Generate Staff List"
+      handlePress={() => props.navigation.navigate('GenerateStaffList')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('LessonNotes') ? (   
+  <>
+      <InnerDItem 
+      label="LessonNotes"
+      handlePress={() => props.navigation.navigate("LessonNotes")}
+      />
+  </>
+) : (<></>)
+}
+
+
+{checkRole("SuperAdmin") || checkRole('Assessments') ? (   
+  <>
+      <InnerDItem 
+      label="Assessments"
+      handlePress={() => props.navigation.navigate("Assessments")}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('Annoucements') ? (   
+  <>
+      <InnerDItem 
+      label="Annoucements"
+      handlePress={() => props.navigation.navigate("Annoucements")}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('AssigntoClassroom') ? (   
+  <>
+      <InnerDItem 
+      label="Assign to Classroom"
+      handlePress={() => props.navigation.navigate("AssigntoClassroom")}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('AssigntoSubject') ? (   
+  <>
+      <InnerDItem 
+      label="Assign to Subject"
+      handlePress={() => props.navigation.navigate("AssigntoSubject")}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('AssigntoActivities') ? (   
+  <>
+      <InnerDItem 
+      label="Assign to Activities"
+      handlePress={() => props.navigation.navigate("AssigntoActivities")}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('Salary') ? (   
+  <>
+      <InnerDItem 
+      label="Salary"
+      handlePress={() => props.navigation.navigate("Salary")}
+      />
+  </>
+) : (<></>)
+}
+
+
+{checkRole("SuperAdmin") || checkRole('Clocking') ? (   
+  <>
+      <InnerDItem 
+      label="Clocking"
+      handlePress={() => props.navigation.navigate("Clocking")}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('PersonalChats') ? (   
+  <>
+      <InnerDItem 
+      label="Personal Chats"
+      handlePress={() => props.navigation.navigate("PersonalChats")}
+      />
+  </>
+) : (<></>)
+}
+
+
+{checkRole("SuperAdmin") || checkRole('StaffPlatform') ? (   
+  <>
+      <InnerDItem 
+      label="Staff Platform"
+      handlePress={() => props.navigation.navigate("StaffPlatform")}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('PTAPlatform') ? (   
+  <>
+      <InnerDItem 
+      label="PTA Platform"
+      handlePress={() => props.navigation.navigate("PTAPlatform")}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+
        
        
 </DropList>
 
-<DropList icon="users" iconsrc={Feather} title="LMS">
-       
-{checkRole("SuperAdmin")|| checkRole('ForStudent') || checkRole('AddStudent') ? (   
+<MultiDropList icon="cubes-stacked" iconsrc={FontAwesome6} title="Learning System Mgmt">
+
+
+
+<InnerDropList title="Class">
+
+{checkRole("SuperAdmin") || checkRole('Register') ? (   
   <>
       <InnerDItem 
-      label="Dashboard"
-      handlePress={() => props.navigation.navigate('Dashboard')}
+      label="Register"
+      handlePress={() => props.navigation.navigate('Register')}
       />
   </>
 ) : (<></>)
@@ -182,47 +490,1194 @@ const checkRole = (role) => {
 
 
 
-{checkRole("SuperAdmin")|| checkRole('ForStudent') || checkRole('AddStudent') ? (   
-  <>
-    <InnerDItem 
-      label="Notifications"
-      handlePress={() => props.navigation.navigate('Notifications')}
-  />
-  
-  </>
-) : (<></>)
-}       
-       
-       
-</DropList>   
+</InnerDropList>
 
-<DropList icon="users" iconsrc={Feather} title="Lesson Notes">
-       
-{checkRole("SuperAdmin")|| checkRole('ForStudent') || checkRole('AddStudent') ? (   
+<InnerDropList title="Discussions">
+
+{checkRole("SuperAdmin") || checkRole('ViewDiscussions') ? (   
   <>
       <InnerDItem 
-      label="Dashboard"
-      handlePress={() => props.navigation.navigate('Dashboard')}
+      label="View Discussions"
+      handlePress={() => props.navigation.navigate('ViewDiscussions')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('TeacherChat') ? (   
+  <>
+      <InnerDItem 
+      label="Teacher's Chat"
+      handlePress={() => props.navigation.navigate('TeacherChat')}
       />
   </>
 ) : (<></>)
 }
 
 
-{checkRole("SuperAdmin")|| checkRole('ForStudent') || checkRole('AddStudent') ? (   
+{checkRole("SuperAdmin") || checkRole('StudentChat') ? (   
   <>
-    <InnerDItem 
-      label="Notifications"
-      handlePress={() => props.navigation.navigate('Notifications')}
-  />
-  
+      <InnerDItem 
+      label="Student's Chat"
+      handlePress={() => props.navigation.navigate('StudentChat')}
+      />
   </>
 ) : (<></>)
-}       
-       
-       
-</DropList> 
+}
 
+
+
+
+</InnerDropList>
+
+<InnerDropList title="Subjects">
+
+{checkRole("SuperAdmin") || checkRole('SubjectList') ? (   
+  <>
+      <InnerDItem 
+      label="Subject List"
+      handlePress={() => props.navigation.navigate('SubjectList')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('SubjectTeachers') ? (   
+  <>
+      <InnerDItem 
+      label="Subject Teachers"
+      handlePress={() => props.navigation.navigate('SubjectTeachers')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+</InnerDropList>
+
+
+<InnerDropList title="Announcement">
+
+{checkRole("SuperAdmin") || checkRole('StudentAnnoucement') ? (   
+  <>
+      <InnerDItem 
+      label="Student"
+      handlePress={() => props.navigation.navigate('StudentAnnoucement')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('StaffAnnoucement') ? (   
+  <>
+      <InnerDItem 
+      label="Staff"
+      handlePress={() => props.navigation.navigate('StaffAnnoucement')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+</InnerDropList>
+
+<InnerDropList title="Assignment">
+
+{checkRole("SuperAdmin") || checkRole('UploadAssignment') ? (   
+  <>
+      <InnerDItem 
+      label="Upload Assignment"
+      handlePress={() => props.navigation.navigate('UploadAssignment')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('ViewAssignment') ? (   
+  <>
+      <InnerDItem 
+      label="View Assignment"
+      handlePress={() => props.navigation.navigate('ViewAssignment')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+
+</InnerDropList>
+
+
+</MultiDropList>
+
+
+<MultiDropList icon="text-document" iconsrc={Entypo} title="Lesson Notes">
+
+<InnerDropList title="Create Notes">
+
+{checkRole("SuperAdmin") || checkRole('UploadLessonNotes') ? (   
+  <>
+      <InnerDItem 
+      label="Upload Lesson Notes"
+      handlePress={() => props.navigation.navigate('UploadLessonNotes')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('TypeLessonNotes') ? (   
+  <>
+      <InnerDItem 
+      label="Type Lesson Notes"
+      handlePress={() => props.navigation.navigate('TypeLessonNotes')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+</InnerDropList>
+
+
+<InnerDropList title="View Notes">
+
+{checkRole("SuperAdmin") || checkRole('ViewLessonNotesFile') ? (   
+  <>
+      <InnerDItem 
+      label="View Lesson Notes File"
+      handlePress={() => props.navigation.navigate('ViewLessonNotesFile')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('ViewTypedLessonNotes') ? (   
+  <>
+      <InnerDItem 
+      label="View Typed Lesson Notes"
+      handlePress={() => props.navigation.navigate('ViewTypedLessonNotes')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+</InnerDropList>
+
+
+<InnerDropList title="Update Notes">
+
+{checkRole("SuperAdmin") || checkRole('UpdateLessonNotesFile') ? (   
+  <>
+      <InnerDItem 
+      label="Update Lesson Notes File"
+      handlePress={() => props.navigation.navigate('UpdateLessonNotesFile')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('UpdateTypedLessonNote') ? (   
+  <>
+      <InnerDItem 
+      label="Update Typed Lesson Notes"
+      handlePress={() => props.navigation.navigate('UpdateTypedLessonNote')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+</InnerDropList>
+
+<InnerDropList title="Delete Notes">
+
+{checkRole("SuperAdmin") || checkRole('DeleteLessonNotesFile') ? (   
+  <>
+      <InnerDItem 
+      label="Delete Lesson Notes File"
+      handlePress={() => props.navigation.navigate('DeleteLessonNotesFile')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('DeleteTypedLessonNote') ? (   
+  <>
+      <InnerDItem 
+      label="Delete Typed Lesson Notes"
+      handlePress={() => props.navigation.navigate('DeleteTypedLessonNote')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+</InnerDropList>
+
+
+
+
+
+</MultiDropList>
+
+<DropList icon="bus-alt" iconsrc={FontAwesome5} title="Transport">
+       
+{checkRole("SuperAdmin") || checkRole('BusAdministration') ? (   
+  <>
+      <InnerDItem 
+      label="Bus Administration"
+      handlePress={() => props.navigation.navigate('BusAdministration')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('Pickup') ? (   
+  <>
+      <InnerDItem 
+      label="Pickup"
+      handlePress={() => props.navigation.navigate('Pickup')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Departure') ? (   
+  <>
+      <InnerDItem 
+      label="Departure"
+      handlePress={() => props.navigation.navigate('Departure')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Arrivals') ? (   
+  <>
+      <InnerDItem 
+      label="Arrivals"
+      handlePress={() => props.navigation.navigate('Arrivals')}
+      />
+  </>
+) : (<></>)
+}
+
+    
+       
+</DropList>
+
+
+
+<DropList icon="attach-money" iconsrc={MaterialIcons} title="Accounting">
+       
+{checkRole("SuperAdmin") || checkRole('BusAdministration') ? (   
+  <>
+      <InnerDItem 
+      label="Bus Administration"
+      handlePress={() => props.navigation.navigate('BusAdministration')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('Pickup') ? (   
+  <>
+      <InnerDItem 
+      label="Pickup"
+      handlePress={() => props.navigation.navigate('Pickup')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Departure') ? (   
+  <>
+      <InnerDItem 
+      label="Departure"
+      handlePress={() => props.navigation.navigate('Departure')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Arrivals') ? (   
+  <>
+      <InnerDItem 
+      label="Arrivals"
+      handlePress={() => props.navigation.navigate('Arrivals')}
+      />
+  </>
+) : (<></>)
+}
+
+    
+       
+</DropList>
+
+<DropList icon="graph" iconsrc={Octicons} title="Reports">
+       
+{checkRole("SuperAdmin") || checkRole('BusAdministration') ? (   
+  <>
+      <InnerDItem 
+      label="Bus Administration"
+      handlePress={() => props.navigation.navigate('BusAdministration')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('Pickup') ? (   
+  <>
+      <InnerDItem 
+      label="Pickup"
+      handlePress={() => props.navigation.navigate('Pickup')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Departure') ? (   
+  <>
+      <InnerDItem 
+      label="Departure"
+      handlePress={() => props.navigation.navigate('Departure')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Arrivals') ? (   
+  <>
+      <InnerDItem 
+      label="Arrivals"
+      handlePress={() => props.navigation.navigate('Arrivals')}
+      />
+  </>
+) : (<></>)
+}
+
+    
+       
+</DropList>
+
+<DropList icon="human-capacity-increase" iconsrc={MaterialCommunityIcons} title="Human Resource">
+       
+{checkRole("SuperAdmin") || checkRole('BusAdministration') ? (   
+  <>
+      <InnerDItem 
+      label="Bus Administration"
+      handlePress={() => props.navigation.navigate('BusAdministration')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('Pickup') ? (   
+  <>
+      <InnerDItem 
+      label="Pickup"
+      handlePress={() => props.navigation.navigate('Pickup')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Departure') ? (   
+  <>
+      <InnerDItem 
+      label="Departure"
+      handlePress={() => props.navigation.navigate('Departure')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Arrivals') ? (   
+  <>
+      <InnerDItem 
+      label="Arrivals"
+      handlePress={() => props.navigation.navigate('Arrivals')}
+      />
+  </>
+) : (<></>)
+}
+
+    
+       
+</DropList>
+
+<DropList icon="persons" iconsrc={Fontisto} title="Administration">
+       
+{checkRole("SuperAdmin") || checkRole('BusAdministration') ? (   
+  <>
+      <InnerDItem 
+      label="Bus Administration"
+      handlePress={() => props.navigation.navigate('BusAdministration')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('Pickup') ? (   
+  <>
+      <InnerDItem 
+      label="Pickup"
+      handlePress={() => props.navigation.navigate('Pickup')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Departure') ? (   
+  <>
+      <InnerDItem 
+      label="Departure"
+      handlePress={() => props.navigation.navigate('Departure')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Arrivals') ? (   
+  <>
+      <InnerDItem 
+      label="Arrivals"
+      handlePress={() => props.navigation.navigate('Arrivals')}
+      />
+  </>
+) : (<></>)
+}
+
+    
+       
+</DropList>
+
+<DropList icon="clipboard-check-multiple" iconsrc={MaterialCommunityIcons} title="Academic Boards">
+       
+{checkRole("SuperAdmin") || checkRole('BusAdministration') ? (   
+  <>
+      <InnerDItem 
+      label="Bus Administration"
+      handlePress={() => props.navigation.navigate('BusAdministration')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('Pickup') ? (   
+  <>
+      <InnerDItem 
+      label="Pickup"
+      handlePress={() => props.navigation.navigate('Pickup')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Departure') ? (   
+  <>
+      <InnerDItem 
+      label="Departure"
+      handlePress={() => props.navigation.navigate('Departure')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Arrivals') ? (   
+  <>
+      <InnerDItem 
+      label="Arrivals"
+      handlePress={() => props.navigation.navigate('Arrivals')}
+      />
+  </>
+) : (<></>)
+}
+
+    
+       
+</DropList>
+
+<DropList icon="add-user" iconsrc={Entypo} title="Registrar">
+       
+{checkRole("SuperAdmin") || checkRole('BusAdministration') ? (   
+  <>
+      <InnerDItem 
+      label="Bus Administration"
+      handlePress={() => props.navigation.navigate('BusAdministration')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('Pickup') ? (   
+  <>
+      <InnerDItem 
+      label="Pickup"
+      handlePress={() => props.navigation.navigate('Pickup')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Departure') ? (   
+  <>
+      <InnerDItem 
+      label="Departure"
+      handlePress={() => props.navigation.navigate('Departure')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Arrivals') ? (   
+  <>
+      <InnerDItem 
+      label="Arrivals"
+      handlePress={() => props.navigation.navigate('Arrivals')}
+      />
+  </>
+) : (<></>)
+}
+
+    
+       
+</DropList>
+
+<DropList icon="money-bill-alt" iconsrc={FontAwesome5} title="Bursary">
+       
+{checkRole("SuperAdmin") || checkRole('BusAdministration') ? (   
+  <>
+      <InnerDItem 
+      label="Bus Administration"
+      handlePress={() => props.navigation.navigate('BusAdministration')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('Pickup') ? (   
+  <>
+      <InnerDItem 
+      label="Pickup"
+      handlePress={() => props.navigation.navigate('Pickup')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Departure') ? (   
+  <>
+      <InnerDItem 
+      label="Departure"
+      handlePress={() => props.navigation.navigate('Departure')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Arrivals') ? (   
+  <>
+      <InnerDItem 
+      label="Arrivals"
+      handlePress={() => props.navigation.navigate('Arrivals')}
+      />
+  </>
+) : (<></>)
+}
+
+    
+       
+</DropList>
+
+<DropList icon="soccer-ball-o" iconsrc={FontAwesome} title="Sports Coordination">
+       
+{checkRole("SuperAdmin") || checkRole('BusAdministration') ? (   
+  <>
+      <InnerDItem 
+      label="Bus Administration"
+      handlePress={() => props.navigation.navigate('BusAdministration')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('Pickup') ? (   
+  <>
+      <InnerDItem 
+      label="Pickup"
+      handlePress={() => props.navigation.navigate('Pickup')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Departure') ? (   
+  <>
+      <InnerDItem 
+      label="Departure"
+      handlePress={() => props.navigation.navigate('Departure')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Arrivals') ? (   
+  <>
+      <InnerDItem 
+      label="Arrivals"
+      handlePress={() => props.navigation.navigate('Arrivals')}
+      />
+  </>
+) : (<></>)
+}
+
+    
+       
+</DropList>
+
+<DropList icon="library-outline" iconsrc={Ionicons} title="Library">
+       
+{checkRole("SuperAdmin") || checkRole('BusAdministration') ? (   
+  <>
+      <InnerDItem 
+      label="Bus Administration"
+      handlePress={() => props.navigation.navigate('BusAdministration')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('Pickup') ? (   
+  <>
+      <InnerDItem 
+      label="Pickup"
+      handlePress={() => props.navigation.navigate('Pickup')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Departure') ? (   
+  <>
+      <InnerDItem 
+      label="Departure"
+      handlePress={() => props.navigation.navigate('Departure')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Arrivals') ? (   
+  <>
+      <InnerDItem 
+      label="Arrivals"
+      handlePress={() => props.navigation.navigate('Arrivals')}
+      />
+  </>
+) : (<></>)
+}
+
+    
+       
+</DropList>
+
+<DropList icon="house-chimney-crack" iconsrc={FontAwesome6} title="Domestics">
+       
+{checkRole("SuperAdmin") || checkRole('BusAdministration') ? (   
+  <>
+      <InnerDItem 
+      label="Bus Administration"
+      handlePress={() => props.navigation.navigate('BusAdministration')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('Pickup') ? (   
+  <>
+      <InnerDItem 
+      label="Pickup"
+      handlePress={() => props.navigation.navigate('Pickup')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Departure') ? (   
+  <>
+      <InnerDItem 
+      label="Departure"
+      handlePress={() => props.navigation.navigate('Departure')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Arrivals') ? (   
+  <>
+      <InnerDItem 
+      label="Arrivals"
+      handlePress={() => props.navigation.navigate('Arrivals')}
+      />
+  </>
+) : (<></>)
+}
+
+    
+       
+</DropList>
+
+<DropList icon="book-education" iconsrc={MaterialCommunityIcons} title="Special Education">
+       
+{checkRole("SuperAdmin") || checkRole('BusAdministration') ? (   
+  <>
+      <InnerDItem 
+      label="Bus Administration"
+      handlePress={() => props.navigation.navigate('BusAdministration')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('Pickup') ? (   
+  <>
+      <InnerDItem 
+      label="Pickup"
+      handlePress={() => props.navigation.navigate('Pickup')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Departure') ? (   
+  <>
+      <InnerDItem 
+      label="Departure"
+      handlePress={() => props.navigation.navigate('Departure')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Arrivals') ? (   
+  <>
+      <InnerDItem 
+      label="Arrivals"
+      handlePress={() => props.navigation.navigate('Arrivals')}
+      />
+  </>
+) : (<></>)
+}
+
+    
+       
+</DropList>
+
+<DropList icon="campaign" iconsrc={MaterialIcons} title="Marketing">
+       
+{checkRole("SuperAdmin") || checkRole('BusAdministration') ? (   
+  <>
+      <InnerDItem 
+      label="Bus Administration"
+      handlePress={() => props.navigation.navigate('BusAdministration')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('Pickup') ? (   
+  <>
+      <InnerDItem 
+      label="Pickup"
+      handlePress={() => props.navigation.navigate('Pickup')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Departure') ? (   
+  <>
+      <InnerDItem 
+      label="Departure"
+      handlePress={() => props.navigation.navigate('Departure')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Arrivals') ? (   
+  <>
+      <InnerDItem 
+      label="Arrivals"
+      handlePress={() => props.navigation.navigate('Arrivals')}
+      />
+  </>
+) : (<></>)
+}
+
+    
+       
+</DropList>
+
+<DropList icon="event-available" iconsrc={MaterialIcons} title="Event Planners">
+       
+{checkRole("SuperAdmin") || checkRole('BusAdministration') ? (   
+  <>
+      <InnerDItem 
+      label="Bus Administration"
+      handlePress={() => props.navigation.navigate('BusAdministration')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('Pickup') ? (   
+  <>
+      <InnerDItem 
+      label="Pickup"
+      handlePress={() => props.navigation.navigate('Pickup')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Departure') ? (   
+  <>
+      <InnerDItem 
+      label="Departure"
+      handlePress={() => props.navigation.navigate('Departure')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Arrivals') ? (   
+  <>
+      <InnerDItem 
+      label="Arrivals"
+      handlePress={() => props.navigation.navigate('Arrivals')}
+      />
+  </>
+) : (<></>)
+}
+
+    
+       
+</DropList>
+
+<DropList icon="persons" iconsrc={Fontisto} title="Counseling">
+       
+{checkRole("SuperAdmin") || checkRole('BusAdministration') ? (   
+  <>
+      <InnerDItem 
+      label="Bus Administration"
+      handlePress={() => props.navigation.navigate('BusAdministration')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('Pickup') ? (   
+  <>
+      <InnerDItem 
+      label="Pickup"
+      handlePress={() => props.navigation.navigate('Pickup')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Departure') ? (   
+  <>
+      <InnerDItem 
+      label="Departure"
+      handlePress={() => props.navigation.navigate('Departure')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Arrivals') ? (   
+  <>
+      <InnerDItem 
+      label="Arrivals"
+      handlePress={() => props.navigation.navigate('Arrivals')}
+      />
+  </>
+) : (<></>)
+}
+
+    
+       
+</DropList>
+
+<DropList icon="fast-food-sharp" iconsrc={Ionicons} title="Kitchen">
+       
+{checkRole("SuperAdmin") || checkRole('BusAdministration') ? (   
+  <>
+      <InnerDItem 
+      label="Bus Administration"
+      handlePress={() => props.navigation.navigate('BusAdministration')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('Pickup') ? (   
+  <>
+      <InnerDItem 
+      label="Pickup"
+      handlePress={() => props.navigation.navigate('Pickup')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Departure') ? (   
+  <>
+      <InnerDItem 
+      label="Departure"
+      handlePress={() => props.navigation.navigate('Departure')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Arrivals') ? (   
+  <>
+      <InnerDItem 
+      label="Arrivals"
+      handlePress={() => props.navigation.navigate('Arrivals')}
+      />
+  </>
+) : (<></>)
+}
+
+    
+       
+</DropList>
+
+<DropList icon="health-and-safety" iconsrc={MaterialIcons} title="Health N Safety">
+       
+{checkRole("SuperAdmin") || checkRole('BusAdministration') ? (   
+  <>
+      <InnerDItem 
+      label="Bus Administration"
+      handlePress={() => props.navigation.navigate('BusAdministration')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('Pickup') ? (   
+  <>
+      <InnerDItem 
+      label="Pickup"
+      handlePress={() => props.navigation.navigate('Pickup')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Departure') ? (   
+  <>
+      <InnerDItem 
+      label="Departure"
+      handlePress={() => props.navigation.navigate('Departure')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Arrivals') ? (   
+  <>
+      <InnerDItem 
+      label="Arrivals"
+      handlePress={() => props.navigation.navigate('Arrivals')}
+      />
+  </>
+) : (<></>)
+}
+
+    
+       
+</DropList>
+
+<DropList icon="computer" iconsrc={FontAwesome6} title="System Management">
+       
+{checkRole("SuperAdmin") || checkRole('BusAdministration') ? (   
+  <>
+      <InnerDItem 
+      label="Bus Administration"
+      handlePress={() => props.navigation.navigate('BusAdministration')}
+      />
+  </>
+) : (<></>)
+}
+
+{checkRole("SuperAdmin") || checkRole('Pickup') ? (   
+  <>
+      <InnerDItem 
+      label="Pickup"
+      handlePress={() => props.navigation.navigate('Pickup')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Departure') ? (   
+  <>
+      <InnerDItem 
+      label="Departure"
+      handlePress={() => props.navigation.navigate('Departure')}
+      />
+  </>
+) : (<></>)
+}
+
+
+
+{checkRole("SuperAdmin") || checkRole('Arrivals') ? (   
+  <>
+      <InnerDItem 
+      label="Arrivals"
+      handlePress={() => props.navigation.navigate('Arrivals')}
+      />
+  </>
+) : (<></>)
+}
+
+    
+       
+</DropList>
+
+
+{/*Student Links, Only Student Can see it  */}
+
+<StraightLink 
+icon="computer" 
+iconsrc={FontAwesome6} 
+title="TimeTable"
+handlePress={() => props.navigation.navigate('Dashboard')}
+/>
+
+<StraightLink 
+icon="computer" 
+iconsrc={FontAwesome6} 
+title="TimeTable"
+handlePress={() => props.navigation.navigate('Dashboard')}
+/>
+
+<StraightLink 
+icon="computer" 
+iconsrc={FontAwesome6} 
+title="TimeTable"
+handlePress={() => props.navigation.navigate('Dashboard')}
+/>
+
+
+
+
+
+
+
+
+
+{
+  /*
+  
+  <TouchableOpacity
+  style={styles.button}
+  onPress={() => BackHandler.exitApp()}
+ >
+<Text >Logout </Text>
+</TouchableOpacity>
+  
+  */
+}
+
+<View style={{marginBottom:30}}>
+
+</View>
 
 
 
@@ -230,16 +1685,40 @@ const checkRole = (role) => {
   );
 }
 
-export default function App() {
+const styles = StyleSheet.create({
+  button:{
   
+    width: '90%',
+    marginLeft: '5%',
+    marginRight: '5%',
+    padding: 7,
+    borderWidth: 1,
 
-  
-  
+  border: 30,
+  borderRadius: 20,
+  border: 2 ,
+  backgroundColor:"aqua", 
+  color: "white",
+  textAlign: "center",
+  padding: 10,
+  display: "flex",
+  alignItems: "center",
+  alignContent: "center",
+  justifyContent: "center",
+  height:50,
+  fontSize:30,
+  position: 'absolute',
+  bottom: 0,
+  }
+
+})
+
+export default function App() {
   return (
     <Drawer.Navigator
 
       drawerContent={props => <CustomDrawerContent {...props} />}
-      screenOptions={({ route }) => ({
+      screenOptions={() => ({
         headerStyle: {
           backgroundColor: "#26293C", // Set the header background color to black
         },
@@ -247,44 +1726,23 @@ export default function App() {
         drawerStyle: {
           backgroundColor: "#26293C",
           height:"90%",
+          borderTopRightRadius:30,
+          borderBottomRightRadius:30,
   
         },
-        drawerIcon: ({ focused, color, size }) => {
-          let iconName;
 
-          switch(route.name){
-            case "Home":
-              iconName = focused ? 'home' : 'home-outline';
-              break;
-            case 'Notifications':
-              iconName = focused ? 'bell' : 'bell-outline';
-              break;
-            default:
-              iconName = focused ? 'home' : 'home-outline';
-          }
-
-          // You can return any component that you like here!
-          return <Feather name={iconName} size={size} color={color} />;
-          return <Octicons name={iconName} size={size} color={color} />;
-
-        },
       })}
-      drawerContentOptions={{
-        activeTintColor: 'red', // Set the active text color in the drawer to white
-        inactiveTintColor: 'green', // Set the inactive text color in the drawer to gray
-        labelStyle: {
-          color: 'red', // Set the default color of drawer labels to gray
-          fontWeight: 'bold', // Set the default font weight of drawer labels to bold
-          fontSize: 16, // Set the default font size of drawer labels to 16
-        },
-        activeLabelStyle: {
-          color: 'green', // Set the color of drawer labels when focused to white
-          fontWeight: 'bold', // Set the font weight of drawer labels when focused to bold
-          fontSize: 18, // Set the font size of drawer labels when focused to 18
-        },
-      }}>
+>
+
       <Drawer.Screen name="Dashboard" component={HomeScreen} />
       <Drawer.Screen name="Notifications" component={NotificationScreen} />
+      <Drawer.Screen name="AddStudent" component={NotificationScreen} />
+    
+    
+    
+    
+    
+    
     </Drawer.Navigator>
   );
 }

@@ -51,7 +51,7 @@ const LoginScreen2 = () => {
         setItem('isInitialLogin', '1');
         navigation.navigate('Dashboard');
 
-        OneButton('Operation is successful');
+        OneButton('Success','Operation is successful');
       } else {
         setLoading(false);
         OneButton(data.message);

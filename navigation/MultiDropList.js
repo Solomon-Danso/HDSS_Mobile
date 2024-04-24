@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity,StyleSheet } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { Feather } from '@expo/vector-icons'; // Assuming you're using Expo for vector icons
 import { colors } from '../assets/colors/Colors';
 
-const DropList = ({ icon, iconsrc, title, children }) => {
+const MultiDropList = ({ icon, iconsrc, title, children }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const Iconsrc = iconsrc;
 
@@ -13,7 +13,21 @@ const DropList = ({ icon, iconsrc, title, children }) => {
   };
 
   // Count the number of children
-  const numChildren = React.Children.toArray(children).filter(child => child.props.children && child.props.children !== <></>).length;
+  const numChildren = React.Children.toArray(children).filter(child => {
+    // Check if the child has props and if its children are not empty
+    if (child.props.children && child.props.children !== <></>) {
+        // If the children are not empty, filter out any grandchildren
+        const filteredChildren = React.Children.toArray(child.props.children).filter(grandchild => 
+            // Check if the grandchild has props and if its children are not empty
+            grandchild.props.children && grandchild.props.children !== <></>
+        );
+        // Count only if there are direct children
+        return filteredChildren.length > 0;
+    }
+    return false; // Otherwise, filter out this child
+}).length;
+
+
 
   // Render only if there are children
   if (numChildren === 0) {
@@ -27,7 +41,7 @@ const DropList = ({ icon, iconsrc, title, children }) => {
          
           <Iconsrc name={icon}  style={styles.icon}/>
 
-         
+        
           <Text style={{ color: 'white', fontSize: 15, marginLeft: 20,fontFamily: "OpenSans, NotoSans, sans-serif" }}>{title}</Text>
          
         </View>
@@ -71,4 +85,4 @@ paddingTop:"0.3rem",
 
 })
 
-export default DropList;
+export default MultiDropList;
