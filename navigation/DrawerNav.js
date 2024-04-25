@@ -1634,25 +1634,76 @@ const checkRole = (role) => {
 {/*Student Links, Only Student Can see it  */}
 
 <StraightLink 
-icon="computer" 
-iconsrc={FontAwesome6} 
+icon="globe" 
+iconsrc={FontAwesome} 
 title="TimeTable"
-handlePress={() => props.navigation.navigate('Dashboard')}
+handlePress={() => props.navigation.navigate('TimeTable')}
 />
 
 <StraightLink 
-icon="computer" 
-iconsrc={FontAwesome6} 
-title="TimeTable"
-handlePress={() => props.navigation.navigate('Dashboard')}
+icon="book" 
+iconsrc={FontAwesome} 
+title="Lesson"
+handlePress={() => props.navigation.navigate('Lesson')}
 />
 
 <StraightLink 
-icon="computer" 
+icon="calendar-days" 
 iconsrc={FontAwesome6} 
-title="TimeTable"
-handlePress={() => props.navigation.navigate('Dashboard')}
+title="Event"
+handlePress={() => props.navigation.navigate('Event')}
 />
+
+
+<StraightLink 
+icon="campaign" 
+iconsrc={MaterialIcons} 
+title="Announcements"
+handlePress={() => props.navigation.navigate('Announcements')}
+/>
+
+<StraightLink 
+icon="chatbubble-ellipses-sharp" 
+iconsrc={Ionicons} 
+title="Discussions"
+handlePress={() => props.navigation.navigate('Discussions')}
+/>
+
+<StraightLink 
+icon="assignment" 
+iconsrc={MaterialIcons} 
+title="Assignments"
+handlePress={() => props.navigation.navigate('Assignments')}
+/>
+
+<StraightLink 
+icon="quiz" 
+iconsrc={MaterialIcons} 
+title="Tests & Quizzes"
+handlePress={() => props.navigation.navigate('Tests&Quizzes')}
+/>
+
+<StraightLink 
+icon="calendar-days" 
+iconsrc={FontAwesome6} 
+title="GradeBook"
+handlePress={() => props.navigation.navigate('GradeBook')}
+/>
+
+<StraightLink 
+icon="calendar-days" 
+iconsrc={FontAwesome6} 
+title="Event"
+handlePress={() => props.navigation.navigate('Event')}
+/>
+
+<StraightLink 
+icon="calendar-days" 
+iconsrc={FontAwesome6} 
+title="Event"
+handlePress={() => props.navigation.navigate('Event')}
+/>
+
 
 
 
