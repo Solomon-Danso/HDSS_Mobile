@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import Onboarding from 'react-native-onboarding-swiper'
 import LottieView from 'lottie-react-native';
 import {useNavigation} from "@react-navigation/native"
-import {setItem} from "../utils/asyncStorage"
+import {setItem} from "../../utils/asyncStorage"
 const {width,height} = Dimensions.get('window')
 
 
@@ -46,7 +46,7 @@ const doneButton = ({...props}) =>{
         backgroundColor: '#a7f3d0',
         image: (
           <View>
-            <LottieView style={styles.lottie} source={require("../assets/animations/onboard1.json")} autoPlay loop/>
+            <LottieView style={styles.lottie} source={require("../../assets/animations/onboard1.json")} autoPlay loop/>
           </View>
         ),
         title: "School Track",
@@ -57,7 +57,7 @@ const doneButton = ({...props}) =>{
         backgroundColor: '#fef3c7',
         image: (
           <View>
-            <LottieView style={styles.lottie} source={require("../assets/animations/finance.json")} autoPlay loop/>
+            <LottieView style={styles.lottie} source={require("../../assets/animations/finance.json")} autoPlay loop/>
  
           </View>
         ),
@@ -70,7 +70,7 @@ const doneButton = ({...props}) =>{
         backgroundColor: '#4D394B',
         image: (
           <View >
-            <LottieView style={styles.lottie} source={require("../assets/animations/parent.json")} autoPlay loop/>
+            <LottieView style={styles.lottie} source={require("../../assets/animations/parent.json")} autoPlay loop/>
  
           </View>
         ),
@@ -83,7 +83,7 @@ const doneButton = ({...props}) =>{
         backgroundColor: '#264C62',
         image: (
           <View>
-            <LottieView style={styles.lottie} source={require("../assets/animations/onboard4.json")} autoPlay loop/>
+            <LottieView style={styles.lottie} source={require("../../assets/animations/onboard4.json")} autoPlay loop/>
  
           </View>
         ),
@@ -95,7 +95,7 @@ const doneButton = ({...props}) =>{
         backgroundColor: '#3A3B64',
         image: (
           <View >
-            <LottieView style={styles.lottie} source={require("../assets/animations/onboard5.json")} autoPlay loop/>
+            <LottieView style={styles.lottie} source={require("../../assets/animations/onboard5.json")} autoPlay loop/>
  
           </View>
         ),

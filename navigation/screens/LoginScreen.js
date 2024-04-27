@@ -4,8 +4,8 @@ import {StatusBar} from "expo-status-bar"
 import LottieView from 'lottie-react-native';
 import Animated,{FadeIn, FadeInDown, FadeInUp, FadeOut} from 'react-native-reanimated'
 import ETO from 'react-native-vector-icons/Entypo';
-import { OneButton, TwoButton,Icon } from '../utils/Alerts.';
-import { getItem, removeItem, setItem } from '../utils/asyncStorage';
+import { OneButton, TwoButton,Icon } from '../../utils/Alerts.';
+import { getItem, removeItem, setItem } from '../../utils/asyncStorage';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { useNavigation } from '@react-navigation/native';
 import * as LocalAuthentication from "expo-local-authentication"
@@ -144,7 +144,7 @@ const LoginScreen2 = () => {
     <SafeAreaView style={styles.container}>
        <StatusBar style="light"/>
       <View style={styles.header}>
-      <Image style={styles.lottie} source={require("../assets/images/school3.jpeg")}/>
+      <Image style={styles.lottie} source={require("../../assets/images/school3.jpeg")}/>
        
       </View>
 
@@ -222,7 +222,7 @@ const LoginScreen2 = () => {
             <View style={{ borderBottomColor: 'white', borderBottomWidth: 1, width: '40%', marginLeft: 10 }} />
 </View>
   <View className="w-full" style={{display:"flex", flexDirection:"row", justifyContent:"center", alignItems:'center',marginTop:20}}>  
-  <LottieView style={{width:50, height:50}} source={require("../assets/animations/biometric.json")} autoPlay loop/> 
+  <LottieView style={{width:50, height:50}} source={require("../../assets/animations/biometric.json")} autoPlay loop/> 
   
   <TouchableOpacity onPress={DeviceAuth}>
   <Text style={{color:"aqua", fontSize:20, fontWeight:'bold'}}>Use Biometric Instead?</Text>

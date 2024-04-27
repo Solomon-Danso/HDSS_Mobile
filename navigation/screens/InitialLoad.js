@@ -33,7 +33,7 @@ const InitialLoad = () => {
     <View style={{ flex: 1 }}>
       <StatusBar style="light" />
       <ImageBackground
-        source={require('../assets/images/school1.jpeg')}
+        source={require('../../assets/images/school1.jpeg')}
         style={{ width, height, resizeMode: "cover" }}
       >
      

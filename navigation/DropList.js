@@ -28,7 +28,7 @@ const DropList = ({ icon, iconsrc, title, children }) => {
           <Iconsrc name={icon}  style={styles.icon}/>
 
          
-          <Text style={{ color: 'white', fontSize: 15, marginLeft: 20,fontFamily: "OpenSans, NotoSans, sans-serif" }}>{title}</Text>
+          <Text style={{ color: 'white', fontSize: 18, marginLeft: 20,fontFamily: "OpenSans, NotoSans, sans-serif" }}>{title}</Text>
          
         </View>
         <Feather name={dropdownOpen ? "chevron-down" : "chevron-right"} size={20} color="white" /> 

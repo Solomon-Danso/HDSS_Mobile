@@ -15,7 +15,7 @@ import { colors } from '../assets/colors/Colors';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { FontAwesome, Fontisto, Ionicons } from '@expo/vector-icons';
+import { FontAwesome, Fontisto, Foundation, Ionicons } from '@expo/vector-icons';
 import StraightLink from './StraightLink';
 import MultiDropList from './MultiDropList';
 
@@ -1691,17 +1691,31 @@ handlePress={() => props.navigation.navigate('GradeBook')}
 />
 
 <StraightLink 
-icon="calendar-days" 
-iconsrc={FontAwesome6} 
-title="Event"
-handlePress={() => props.navigation.navigate('Event')}
+icon="google-classroom" 
+iconsrc={MaterialCommunityIcons} 
+title="Classroom"
+handlePress={() => props.navigation.navigate('Classroom')}
 />
 
 <StraightLink 
-icon="calendar-days" 
-iconsrc={FontAwesome6} 
-title="Event"
-handlePress={() => props.navigation.navigate('Event')}
+icon="clipboard-notes" 
+iconsrc={Foundation} 
+title="Notes"
+handlePress={() => props.navigation.navigate('Notes')}
+/>
+
+<StraightLink 
+icon="report" 
+iconsrc={Octicons} 
+title="Reports"
+handlePress={() => props.navigation.navigate('Reports')}
+/>
+
+<StraightLink 
+icon="attach-money" 
+iconsrc={MaterialIcons} 
+title="Payments"
+handlePress={() => props.navigation.navigate('Payments')}
 />
 
 
@@ -1711,10 +1725,6 @@ handlePress={() => props.navigation.navigate('Event')}
 
 
 
-
-
-{
-  /*
   
   <TouchableOpacity
   style={styles.button}
@@ -1723,13 +1733,10 @@ handlePress={() => props.navigation.navigate('Event')}
 <Text >Logout </Text>
 </TouchableOpacity>
   
-  */
-}
 
-<View style={{marginBottom:30}}>
+<View style={{marginBottom:40}}>
 
 </View>
-
 
 
     </DrawerContentScrollView>

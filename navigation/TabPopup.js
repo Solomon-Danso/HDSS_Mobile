@@ -18,12 +18,18 @@ import {colors} from "../assets/colors/Colors"
 import MainPage from "../Pages/MainPage"
 import MenuButton from "../Pages/MenuButton"
 import { useTheme } from '@react-navigation/native';
+import Research from '../Pages/Research';
+import Profile from '../Pages/Profile';
+import VideoCall from '../Pages/VideoCall';
+import ChatSystem from '../Pages/ChatSystem';
 
 const TabArr = [
   { route: 'Home', label: 'Home', type: Feather, icon: 'home', component: MenuButton, color: colors.primary, alphaClr: colors.primaryAlpha },
-  { route: 'Search', label: 'Search', type: Feather, icon: 'search', component: MainPage, color: colors.green, alphaClr: colors.greenAlpha },
-  { route: 'Add', label: 'Add New', type: Feather, icon: 'plus-square', component: MainPage, color: colors.red, alphaClr: colors.redAlpha },
-  { route: 'Account', label: 'Account', type: FontAwesome, icon: 'user-circle-o', component: MenuButton, color: colors.purple, alphaClr: colors.purpleAlpha },
+  { route: 'Research', label: 'Research', type: Feather, icon: 'search', component: Research, color: colors.green, alphaClr: colors.greenAlpha },
+  { route: 'Profile', label: 'Profile', type: FontAwesome, icon: 'user-circle-o', component: Profile, color: colors.purple, alphaClr: colors.purpleAlpha },
+  { route: 'Classroom', label: 'Classroom', type: FontAwesome, icon: 'video-camera', component: VideoCall, color: colors.red, alphaClr: colors.redAlpha },
+  { route: 'Chat', label: 'Chat', type: FontAwesome, icon: 'whatsapp', component: ChatSystem, color: colors.red, alphaClr: colors.redAlpha },
+
 ];
 
 const Tab = createBottomTabNavigator();

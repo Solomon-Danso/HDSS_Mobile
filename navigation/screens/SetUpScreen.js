@@ -5,9 +5,9 @@ import LottieView from 'lottie-react-native';
 import Animated,{FadeIn, FadeInDown, FadeInUp, FadeOut} from 'react-native-reanimated'
 import FA5 from 'react-native-vector-icons/FontAwesome5';
 import MCI from 'react-native-vector-icons/MaterialCommunityIcons';
-import { OneButton, TwoButton,Icon } from '../utils/Alerts.';
+import { OneButton, TwoButton,Icon } from '../../utils/Alerts.';
 import Spinner from 'react-native-loading-spinner-overlay';
-import { getItem, removeItem, setItem } from '../utils/asyncStorage';
+import { getItem, removeItem, setItem } from '../../utils/asyncStorage';
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -66,7 +66,7 @@ const SetupScreen = () => {
     <SafeAreaView style={styles.container}>
        <StatusBar style="light"/>
       <View style={styles.header}>
-      <Image style={styles.lottie} source={require("../assets/images/school2.jpeg")}/>
+      <Image style={styles.lottie} source={require("../../assets/images/school2.jpeg")}/>
        
       </View>
 
@@ -79,7 +79,7 @@ const SetupScreen = () => {
       <View style={styles.card}>
 
 <View style={{display:"flex", alignItems:"center", justifyContent:"center",marginBottom:25}}>
-<Animated.Image entering={FadeInDown.delay(200).duration(3000).springify().damping(4)} style={{width:100, height:100, borderRadius:20,marginTop:10}}  source={require("../assets/images/HydotLogo.png")}/>
+<Animated.Image entering={FadeInDown.delay(200).duration(3000).springify().damping(4)} style={{width:100, height:100, borderRadius:20,marginTop:10}}  source={require("../../assets/images/HydotLogo.png")}/>
 <Text style={styles.headerText}>Setup Page</Text>
          
 </View>

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import LoginScreen from '../screens/LoginScreen';
-import OnBoardingScreen from '../screens/OnBoardingScreen';
+import LoginScreen from '../navigation/screens/LoginScreen';
+import OnBoardingScreen from '../navigation/screens/OnBoardingScreen';
 import { getItem, removeItem } from '../utils/asyncStorage';
-import SetUpScreen from '../screens/SetUpScreen';
-import TabPopup from "./TabPopup"
-import InitialLoad from '../screens/InitialLoad';
+import SetUpScreen from '../navigation/screens/SetUpScreen';
+import Main from "./TabPopup"
+import InitialLoad from '../navigation/screens/InitialLoad';
 
 
 const Stack = createNativeStackNavigator();
@@ -98,9 +98,9 @@ const AppNavigation = () => {
       }
 
 
-<Stack.Screen name="Home" component={TabPopup}/>
+<Stack.Screen name="Home" component={InitialLoad}/>
 <Stack.Screen name="Login" component={LoginScreen}/>
-<Stack.Screen name="Dashboard" component={InitialLoad}/>   
+<Stack.Screen name="Dashboard" component={Main}/>   
    
     
 

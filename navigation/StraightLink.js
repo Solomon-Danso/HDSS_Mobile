@@ -114,7 +114,7 @@ const StraightLink = ({icon, iconsrc, title,handlePress}) => {
       <Iconsrc name={icon}  style={styles.icon}/>
 
      
-      <Text style={{ color: 'white', fontSize: 15, marginLeft: 20,fontFamily: "OpenSans, NotoSans, sans-serif" }}>{title}</Text>
+      <Text style={{ color: 'white', fontSize: 18, marginLeft: 20,fontFamily: "OpenSans, NotoSans, sans-serif" }}>{title}</Text>
      
     </View>
    </TouchableOpacity>
@@ -124,7 +124,7 @@ const StraightLink = ({icon, iconsrc, title,handlePress}) => {
 const styles = StyleSheet.create({
     icon:{
       borderRadius: 50,
-    fontSize:18,
+    fontSize:24,
     height: 24,
     width: 24, 
     display: "flex",
