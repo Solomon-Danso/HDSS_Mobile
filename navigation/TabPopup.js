@@ -109,7 +109,7 @@ export default function AnimTab1() {
           headerShown: false,
           tabBarStyle: styles.tabBar,
         }}
-        initialRouteName="Profile"
+        initialRouteName="Home"
       >
         {TabArr.map((item, index) => {
           return (

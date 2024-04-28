@@ -9,6 +9,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Octicons from 'react-native-vector-icons/Octicons';
+import Constants from 'expo-constants';
 
 
 const Profile = () => {
@@ -269,7 +270,7 @@ const url = `ViewStudent/${UserId}/${CompanyId}/${UserId}`
 
 
   return (
-    <View style={{flex:1, backgroundColor:"#26293C", paddingTop:25}}>
+    <View style={{flex:1, backgroundColor:"#26293C", paddingTop:Constants.statusBarHeight}}>
       
     <View style={styles.fixedTop}>
 <Image style={{height:70, width:70}} source={{ uri:apiMedia+SchoolData.CompanyLogo }}  />
