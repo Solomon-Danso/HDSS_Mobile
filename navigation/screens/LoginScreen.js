@@ -22,9 +22,7 @@ const LoginScreen2 = () => {
   const [userPassword, setuserPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
-  const [isConnected, setIsConnected] = useState(true);
-  const [attemptCount, setAttemptCount] = useState(0);
-
+  
 
 
   const Login = async () => {
@@ -134,7 +132,9 @@ const LoginScreen2 = () => {
     };
 
     fetchData();
-  }, []); 
+  }, []);
+  
+
 
 
 
