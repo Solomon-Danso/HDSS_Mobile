@@ -18,6 +18,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { FontAwesome, Fontisto, Foundation, Ionicons } from '@expo/vector-icons';
 import StraightLink from './StraightLink';
 import MultiDropList from './MultiDropList';
+import AddStudent from '../Portal/Staff/Students-Mgmt/AddStudent';
 
 
 
@@ -1794,7 +1795,7 @@ export default function App() {
 
       <Drawer.Screen name="Dashboard" component={HomeScreen} />
       <Drawer.Screen name="Notifications" component={NotificationScreen} />
-      <Drawer.Screen name="AddStudent" component={NotificationScreen} />
+      <Drawer.Screen name="AddStudent" component={AddStudent} />
     
     
     

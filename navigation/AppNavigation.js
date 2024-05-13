@@ -98,9 +98,10 @@ const AppNavigation = () => {
       }
 
 
-<Stack.Screen name="Home" component={Main}/>
+<Stack.Screen name="Home" component={InitialLoad}/>
 <Stack.Screen name="Login" component={LoginScreen}/>
-<Stack.Screen name="Dashboard" component={InitialLoad}/>   
+<Stack.Screen name="Dashboard" component={Main}/> 
+  
    
     
 

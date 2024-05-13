@@ -8,7 +8,7 @@ export default function App() {
 
     <WebView
       style={styles.container}
-      source={{ uri: 'https://chat.openai.com/' }}
+      source={{ uri: 'https://chatgpt.com/' }}
     />
 
 <View style={{marginBottom:100}}>
